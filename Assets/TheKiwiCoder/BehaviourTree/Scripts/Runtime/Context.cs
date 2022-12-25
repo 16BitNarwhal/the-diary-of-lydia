@@ -13,6 +13,7 @@ namespace TheKiwiCoder {
         public Animator animator;
         public Rigidbody rigidbody;
         public NavMeshAgent agent;
+        public Enemy script; // all BTs should have an enemy script
 
         public static Context CreateFromGameObject(GameObject gameObject) {
             // Fetch all commonly used components
@@ -21,7 +22,7 @@ namespace TheKiwiCoder {
             context.transform = gameObject.transform;
             context.rigidbody = gameObject.GetComponent<Rigidbody>();
             context.agent = gameObject.GetComponent<NavMeshAgent>();
-            
+            context.script = gameObject.GetComponent<Enemy>();
             context.animator = gameObject.GetComponent<Animator>();
 
             // if no context.animator, try find on child

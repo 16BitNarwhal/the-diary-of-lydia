@@ -9,23 +9,46 @@ namespace TheKiwiCoder {
         
         public bool useWeights = false;
         public List<int> weights;
+        public bool useMarkov = false;
+
+        [System.Serializable]
+        public class Row {
+            public int[] weights;
+        }
+        public Row[] markov;
 
         protected int currentChild;
 
-        void Awake() {
-
-        }
-
         protected override void OnStart() {
+            if (useWeights && useMarkov) {
+                Debug.LogError("RandomSelector: cannot use both weights and markov chains");
+                return;
+            }
+            
             if (useWeights) {
                 if (weights.Count != children.Count) {
                     Debug.LogError("RandomSelector: weights count does not match children count");
                     return;
                 }
                 getWeightedRandom();
-            } else {
-                this.currentChild = Random.Range(0, children.Count);
+                return;
             }
+            
+            if (useMarkov) {
+                if (markov.Length != children.Count) {
+                    Debug.LogError("RandomSelector: markov count does not match children count");
+                    return;
+                }
+                for (int i=0;i<markov.Length;i++) {
+                    if (markov[i].weights.Length != children.Count) {
+                        Debug.LogError("RandomSelector: markov count does not match children count");
+                        return;
+                    }
+                }
+                getMarkovRandom();
+                return;
+            }
+            this.currentChild = Random.Range(0, children.Count);
         }
 
         protected override void OnStop() {
@@ -42,6 +65,19 @@ namespace TheKiwiCoder {
             int current = 0;
             for (int i = 0; i < weights.Count; i++) {
                 current += weights[i];
+                if (random < current) {
+                    this.currentChild = i;
+                    return;
+                }
+            }
+        }
+
+        private void getMarkovRandom() {
+            int total = markov[currentChild].weights.Sum();
+            int random = Random.Range(0, total);
+            int current = 0;
+            for (int i = 0; i < markov[currentChild].weights.Length; i++) {
+                current += markov[currentChild].weights[i];
                 if (random < current) {
                     this.currentChild = i;
                     return;
