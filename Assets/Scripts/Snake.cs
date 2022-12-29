@@ -39,16 +39,12 @@ public class Snake : MonoBehaviour {
     }
 
 
-    const float updateInterval = 0.1f;
     void FixedUpdate() {
-        // update the path if the snake moves
-        if (Vector3.Distance(transform.position, path[0].position) >= updateInterval) {
-            // get rotation of first body segment towards head
-            if (bodySegments.Count > 0) {
-                Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * (transform.position - bodySegments[0].transform.position);
-                Quaternion rotation = Quaternion.LookRotation(forward:Vector3.forward, upwards:rotatedVectorToTarget);
-                path.Add(new Marker(transform.position, rotation));
-            }
+        // get rotation of first body segment towards head
+        if (bodySegments.Count > 0) {
+            Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * (transform.position - bodySegments[0].transform.position);
+            Quaternion rotation = Quaternion.LookRotation(forward:Vector3.forward, upwards:rotatedVectorToTarget);
+            path.Add(new Marker(transform.position, rotation));
         }
 
         // update body segments

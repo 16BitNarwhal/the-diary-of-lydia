@@ -7,7 +7,7 @@ using TheKiwiCoder;
 public class SpreadShot : ActionNode
 {
 
-    public GameObject projectilePrefab;
+    public List<GameObject> projectilePrefabs;
     public int amount = 4;
     public int repeat = 1;
     public float shotDelay = 0.1f;
@@ -23,6 +23,10 @@ public class SpreadShot : ActionNode
         angle = 360f/amount;
         
         context.gameObject.GetComponent<Enemy>().StartCoroutine(Shoot());
+
+        if (projectilePrefabs.Count == 0) {
+            Debug.LogError("No projectile prefab set");
+        }
     }
 
     protected override void OnStop() {
@@ -35,8 +39,10 @@ public class SpreadShot : ActionNode
     IEnumerator Shoot() {
         float angle = 360f / amount;
         for (int i = 0; i < amount; i++) {
+            GameObject projectilePrefab = projectilePrefabs[Random.Range(0, projectilePrefabs.Count)];
+            if (projectilePrefab == null) continue;
+
             GameObject projectile = Object.Instantiate(projectilePrefab, context.transform.position, context.transform.rotation);
-            // rotation projectile variable set to angle * i
             
             Quaternion rotation = Quaternion.AngleAxis(angle * i, Vector3.forward);
             Vector3 direction = rotation * Vector3.right;

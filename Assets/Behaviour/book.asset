@@ -29,7 +29,7 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 387, y: 23, z: 0}
+  viewPosition: {x: 464, y: 77.6, z: 0}
   viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
@@ -78,6 +78,8 @@ MonoBehaviour:
         - rid: 670842958124154887
         useWeights: 0
         weights: 
+        useMarkov: 0
+        markov: []
     - rid: 670842958124154883
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -104,7 +106,10 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         speed: 2
+        minDistance: 0
         maxDistance: 2
+        respectToPlayer: 0
+        accelerate: 0
     - rid: 670842958124154885
       type: {class: FiniteRepeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -136,6 +141,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         animationName: 
+        waitUntilFinished: 0
     - rid: 670842958124154887
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -162,7 +168,10 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         speed: 1
+        minDistance: 0
         maxDistance: 10
+        respectToPlayer: 0
+        accelerate: 0
     - rid: 670842958124154889
       type: {class: FiniteRepeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -194,3 +203,4 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         animationName: 
+        waitUntilFinished: 0

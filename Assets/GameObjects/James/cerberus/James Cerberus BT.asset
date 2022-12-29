@@ -1,0 +1,292 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: James Cerberus BT
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 670843502506803200
+  nodes:
+  - rid: 670843502506803200
+  - rid: 670843502506803201
+  - rid: 670843502506803202
+  - rid: 670843502506803203
+  - rid: 670843502506803209
+  - rid: 670843502506803210
+  - rid: 670843502506803211
+  - rid: 670843502506803212
+  - rid: 670843502506803213
+  - rid: 670843502506803214
+  - rid: 670843502506803215
+  - rid: 670843502506803217
+  - rid: 670843502506803218
+  - rid: 670843502506803219
+  - rid: 670843502506803220
+  - rid: 670843502506803221
+  - rid: 670843502506803222
+  treeState: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  viewPosition: {x: 196, y: -33.6, z: 0}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 670843502506803200
+      type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 2dc96734-23f4-4105-81c3-973d2ef7297b
+        position: {x: 287.1998, y: -121.09074}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 670843502506803201
+    - rid: 670843502506803201
+      type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: be4dd0c37057b9745a8e7790e219163b
+        position: {x: 287.1998, y: 9.3092575}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 670843502506803202
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 670843502506803202
+      type: {class: RandomSelector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 9aef8dae336a6004dbc0f1cbe05a49f2
+        position: {x: 287.1998, y: 135.70927}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 670843502506803210
+        - rid: 670843502506803209
+        - rid: 670843502506803217
+        useWeights: 0
+        weights: 
+        useMarkov: 1
+        markov:
+        - weights: 040000000100000001000000
+        - weights: 010000000000000000000000
+        - weights: 010000000100000000000000
+    - rid: 670843502506803203
+      type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 6742509f6df41d843824d66e59da737c
+        position: {x: -174.95547, y: 530.4}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        speed: 4
+        minDistance: 5
+        maxDistance: 7
+        respectToPlayer: 1
+        accelerate: 0
+    - rid: 670843502506803209
+      type: {class: FiniteRepeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 18c5c7e7d9a5c024c97d6aa142aace5e
+        position: {x: 287.40002, y: 400}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: summon people
+        drawGizmos: 0
+        child:
+          rid: 670843502506803212
+        repeatCount: 1
+        randomize: 1
+        repeatMin: 3
+        repeatMax: 7
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 670843502506803210
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: f6bdd7f60bde04c49913f997cb7431c1
+        position: {x: -271.7555, y: 400}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: movement
+        drawGizmos: 0
+        children:
+        - rid: 670843502506803211
+        - rid: 670843502506803203
+    - rid: 670843502506803211
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 992fbec26d872da4e90e5e2ba7432c02
+        position: {x: -380.55548, y: 530.4}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        animationName: walk
+        waitUntilFinished: 0
+    - rid: 670843502506803212
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 70b9078b3ab926f408a06f1db2036524
+        position: {x: 287.2, y: 515.6}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 670843502506803214
+        - rid: 670843502506803215
+    - rid: 670843502506803213
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: b241883bf1fe8504e9d470ccd27c9564
+        position: {x: 97.844955, y: 656.80005}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: howling anim
+        drawGizmos: 0
+        animationName: 
+        waitUntilFinished: 0
+    - rid: 670843502506803214
+      type: {class: SummonEntity, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 73158d4a92702bf42a607acf22700aee
+        position: {x: 287.2, y: 688.80005}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        entityPrefab: {fileID: 6327037945623338562, guid: 9862177acc426d247884cd7ba61c765b, type: 3}
+        maxRandomDistance: 5
+    - rid: 670843502506803215
+      type: {class: Wait, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: a97161ed41ddb2a40b70dbef6a26c49c
+        position: {x: 472.55502, y: 661.6001}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        duration: 0.5
+    - rid: 670843502506803217
+      type: {class: FiniteRepeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 4e1ce9d3b786892478cee050a1f3a72d
+        position: {x: 882.577, y: 400}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: summon locket
+        drawGizmos: 0
+        child:
+          rid: 670843502506803218
+        repeatCount: 1
+        randomize: 1
+        repeatMin: 2
+        repeatMax: 3
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 670843502506803218
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 3c8e43a2b97020c4f82c22575f09c5e0
+        position: {x: 882.577, y: 515.2}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 670843502506803221
+        - rid: 670843502506803219
+    - rid: 670843502506803219
+      type: {class: Wait, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 92a82a6ed3dd9164694a037c9833a97c
+        position: {x: 1072.177, y: 644.80005}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        duration: 1
+    - rid: 670843502506803220
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 4c10ff2e971aab54f828c93e342050bd
+        position: {x: 692.97705, y: 644.80005}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 'howling anim
+
+'
+        drawGizmos: 0
+        animationName: 
+        waitUntilFinished: 0
+    - rid: 670843502506803221
+      type: {class: SummonEntity, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: bf88c0c7d3a4c0b4cb43912bc5281ac5
+        position: {x: 882.577, y: 661.60004}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        entityPrefab: {fileID: 6327037945623338562, guid: 9862177acc426d247884cd7ba61c765b, type: 3}
+        maxRandomDistance: 5
+    - rid: 670843502506803222
+      type: {class: Log, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: e38b5a73cf5fbab46a7d7efcd71de6d7
+        position: {x: 645.8598, y: 454.1865}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: if lydia "stunned/trapped" by locket, all summoned people will
+          be attracted to her
+        drawGizmos: 0
+        message: 

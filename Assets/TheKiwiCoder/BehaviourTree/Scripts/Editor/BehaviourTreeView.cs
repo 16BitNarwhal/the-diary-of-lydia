@@ -23,7 +23,7 @@ namespace TheKiwiCoder {
         }
 
         public ScriptTemplate[] scriptFileAssets = {
-            
+
             new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateActionNode, defaultFileName="NewActionNode.cs", subFolder="Actions" },
             new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateCompositeNode, defaultFileName="NewCompositeNode.cs", subFolder="Composites" },
             new ScriptTemplate{ templateFile=BehaviourTreeSettings.GetOrCreateSettings().scriptTemplateDecoratorNode, defaultFileName="NewDecoratorNode.cs", subFolder="Decorators" },
@@ -44,6 +44,8 @@ namespace TheKiwiCoder {
             styleSheets.Add(styleSheet);
 
             viewTransformChanged += OnViewTransformChanged;
+            serializeGraphElements += CopyOperation;
+            unserializeAndPaste += PasteOperation;
         }
 
         void OnViewTransformChanged(GraphView graphView) {
@@ -64,7 +66,7 @@ namespace TheKiwiCoder {
 
         public void PopulateView(SerializedBehaviourTree tree) {
             serializer = tree;
-            
+
             ClearView();
 
             Debug.Assert(serializer.tree.rootNode != null);
@@ -189,15 +191,16 @@ namespace TheKiwiCoder {
             ProjectWindowUtil.CreateScriptAssetFromTemplateFile(templatePath, template.defaultFileName);
         }
 
-        void CreateNode(System.Type type, Vector2 position) {
+        NodeView CreateNode(System.Type type, Vector2 position) {
             Node node = serializer.CreateNode(type, position);
-            CreateNodeView(node);
+            return CreateNodeView(node);
         }
 
-        void CreateNodeView(Node node) {
+        NodeView CreateNodeView(Node node) {
             NodeView nodeView = new NodeView(serializer, node);
             nodeView.OnNodeSelected = OnNodeSelected;
             AddElement(nodeView);
+            return nodeView;
         }
 
         public void UpdateNodeStates() {
@@ -205,6 +208,27 @@ namespace TheKiwiCoder {
                 NodeView view = n as NodeView;
                 view.UpdateState();
             });
+        }
+
+        List<Node> nodesToCopy = new List<Node>();
+        public string CopyOperation(IEnumerable<GraphElement> elements) {
+            nodesToCopy.Clear();
+            foreach (GraphElement n in elements) {
+                NodeView nodeView = n as NodeView;
+                if (nodeView != null) {
+                    nodesToCopy.Add(nodeView.node);
+                }
+            }
+            return "Copy Nodes";
+        }
+        public void PasteOperation(string operationName, string data) {
+            ClearSelection();
+            List<NodeView> newNodes = new List<NodeView>();
+            foreach (Node originalNode in nodesToCopy) {
+                NodeView n = this.CreateNode(originalNode.GetType(), originalNode.position + new Vector2(30, 20));
+                newNodes.Add(n);
+                AddToSelection(n);
+            }
         }
     }
 }

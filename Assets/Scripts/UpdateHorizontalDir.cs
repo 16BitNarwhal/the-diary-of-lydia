@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpdateHorizontalDir : MonoBehaviour {
 
+    [SerializeField] private bool startFaceLeft = false;
     private UnityEngine.AI.NavMeshAgent agent;
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -13,10 +14,11 @@ public class UpdateHorizontalDir : MonoBehaviour {
     }
 
     void Update() {
+        int direction = startFaceLeft ? -1 : 1;
         if (agent.velocity.x < 0) {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x)*direction, transform.localScale.y, transform.localScale.z);
         } else if (agent.velocity.x > 0) {
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x)*direction, transform.localScale.y, transform.localScale.z);
         }
     }
 }

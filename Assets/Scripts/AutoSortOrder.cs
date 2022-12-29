@@ -8,15 +8,7 @@ public class AutoSortOrder : MonoBehaviour {
 
     void Start() {
         sr = new List<SpriteRenderer>();
-        if (GetComponent<SpriteRenderer>() != null) {
-            sr.Add(GetComponent<SpriteRenderer>());
-        }
-        foreach (Transform child in transform) {
-            SpriteRenderer childSr = child.GetComponent<SpriteRenderer>();
-            if (childSr != null) {
-                sr.Add(childSr);
-            }
-        }
+        SearchChildren(transform);
     }
 
     void Update() {
@@ -24,4 +16,17 @@ public class AutoSortOrder : MonoBehaviour {
             childSr.sortingOrder = Mathf.RoundToInt(1 / (gameObject.transform.position.y+5) * 1000);
         }
     }
+
+    void SearchChildren(Transform child) {
+        if (child!=transform && child.GetComponent<AutoSortOrder>() != null) {
+            return;
+        }
+        if (child.GetComponent<SpriteRenderer>() != null) {
+            sr.Add(child.GetComponent<SpriteRenderer>());
+        }
+        foreach (Transform t in child) {
+            SearchChildren(t);
+        }
+    }
+
 }
