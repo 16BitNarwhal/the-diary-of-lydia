@@ -103,7 +103,7 @@ public class Player : MonoBehaviour, IDamageable {
     public void Trap(float seconds) {
         StartCoroutine(Trapped(seconds));
     }
-
+    
     IEnumerator Trapped(float seconds) {
         float oldSpeed = speed;
         speed = 0;
