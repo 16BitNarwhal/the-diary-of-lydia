@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, IDamageable {
     private Vector2 mousePos;
     private Vector2 direction;
     private bool mouse_pressed;
-    private float last_shot;
+    private float lastShot;
 
     // Start is called before the first frame update
     void Start() {
@@ -63,8 +63,8 @@ public class Player : MonoBehaviour, IDamageable {
     }
 
     void HandleAttack() {
-        if (mouse_pressed && (Time.time - last_shot > attackRate)) {
-            last_shot = Time.time;
+        if (mouse_pressed && (Time.time - lastShot > attackRate)) {
+            lastShot = Time.time;
             GameObject proj = Instantiate(projectile, transform.position, Quaternion.identity);
             proj.GetComponent<Projectile>().SetVelocity(direction * projectileSpeed);
         }
@@ -98,6 +98,21 @@ public class Player : MonoBehaviour, IDamageable {
             sprite.color = c;
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public void Trap(float seconds) {
+        StartCoroutine(Trapped(seconds));
+    }
+
+    IEnumerator Trapped(float seconds) {
+        float oldSpeed = speed;
+        speed = 0;
+        yield return new WaitForSeconds(seconds);
+        speed = oldSpeed;
+    }
+
+    public bool IsTrapped() {
+        return speed == 0;
     }
 
 }

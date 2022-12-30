@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 481935233891514271}
   - component: {fileID: 3607679694341513228}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6454479880684372615}
   - component: {fileID: -8990921033691820331}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: snake body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

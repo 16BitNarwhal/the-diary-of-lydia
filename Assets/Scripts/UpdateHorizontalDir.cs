@@ -15,9 +15,9 @@ public class UpdateHorizontalDir : MonoBehaviour {
 
     void Update() {
         int direction = startFaceLeft ? -1 : 1;
-        if (agent.velocity.x < 0) {
+        if (agent.velocity.x < 0.1f) {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x)*direction, transform.localScale.y, transform.localScale.z);
-        } else if (agent.velocity.x > 0) {
+        } else if (agent.velocity.x > 0.1f) {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x)*direction, transform.localScale.y, transform.localScale.z);
         }
     }

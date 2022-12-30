@@ -1,0 +1,379 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: person
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 670842958124154880
+  nodes:
+  - rid: 670842958124154880
+  - rid: 670842958124154881
+  - rid: 670842958124154882
+  - rid: 670842958124154883
+  - rid: 670842958124154884
+  - rid: 670842958124154885
+  - rid: 670842958124154886
+  - rid: 670842958124154887
+  - rid: 670842958124154888
+  - rid: 670842958124154889
+  - rid: 670842958124154890
+  - rid: 670843512307580928
+  - rid: 670843512307580929
+  - rid: 670843512307580930
+  - rid: 670843512307580931
+  - rid: 670843512307580932
+  - rid: 670843512307580933
+  - rid: 670843512307580935
+  - rid: 670843512307580936
+  - rid: 670843512307580937
+  - rid: 670843512307580938
+  - rid: 670843512307580939
+  treeState: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  viewPosition: {x: 452.8, y: -56.8, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 670842958124154880
+      type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 1d4e0352-1e93-4f36-87b7-91827b2e9b95
+        position: {x: -16.729618, y: 56.88071}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 670842958124154881
+    - rid: 670842958124154881
+      type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: b40452ea1a2187b41ac96317c82f2e4c
+        position: {x: -16.799984, y: 173.49005}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 670843512307580928
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 670842958124154882
+      type: {class: RandomSelector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: baf5109df01643944af346394bd2dc44
+        position: {x: 250.99983, y: 557.68787}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 670842958124154883
+        - rid: 670842958124154887
+        - rid: 670843512307580938
+        useWeights: 0
+        weights: 
+        useMarkov: 0
+        markov: []
+    - rid: 670842958124154883
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 25de16917f9c43e4c91ab69f782f5a5d
+        position: {x: -9.000076, y: 690}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: MINI MOVE
+        drawGizmos: 0
+        children:
+        - rid: 670842958124154886
+        - rid: 670842958124154885
+    - rid: 670842958124154884
+      type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 5e1e4a825bd0c4d41b59e88b89c9e79e
+        position: {x: 95.99989, y: 935.00006}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        speed: 2
+        minDistance: 0
+        maxDistance: 2
+        respectToPlayer: 0
+        accelerate: 0
+    - rid: 670842958124154885
+      type: {class: FiniteRepeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: bf9f64060f9429f46be4661b0278d318
+        position: {x: 96.417336, y: 817.99994}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 670842958124154884
+        repeatCount: 1
+        randomize: 1
+        repeatMin: 3
+        repeatMax: 6
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 670842958124154886
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 2333e3ace0f13084b8f1a3d7fa76d046
+        position: {x: -127.33824, y: 817.99994}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        animationName: walk
+        waitUntilFinished: 0
+    - rid: 670842958124154887
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 4adc3b9b40323594e93cb90bf65796e5
+        position: {x: 497.29227, y: 690}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: LONG MOVE
+        drawGizmos: 0
+        children:
+        - rid: 670842958124154890
+        - rid: 670842958124154889
+    - rid: 670842958124154888
+      type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 5b5cb8687bfa7484f80a49ec4846a8e8
+        position: {x: 592, y: 934.99994}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        speed: 1
+        minDistance: 0
+        maxDistance: 10
+        respectToPlayer: 0
+        accelerate: 0
+    - rid: 670842958124154889
+      type: {class: FiniteRepeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: c3854cdd024adc84a8c577502dbd7b3a
+        position: {x: 592.4572, y: 817.99994}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 670842958124154888
+        repeatCount: 1
+        randomize: 1
+        repeatMin: 1
+        repeatMax: 2
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 670842958124154890
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 2e279dbe77b87dd45b7a57807976d3fe
+        position: {x: 401.00003, y: 817.99994}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        animationName: walk
+        waitUntilFinished: 0
+    - rid: 670843512307580928
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 0d75bd21c1d41b14c928e7299efac5eb
+        position: {x: -16.800022, y: 291.25006}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 670843512307580929
+        - rid: 670843512307580933
+    - rid: 670843512307580929
+      type: {class: IfPlayerTrapped, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 0d59590042493b341af1a39796150b5c
+        position: {x: -457.00015, y: 426}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: PLAYER STUCK
+        drawGizmos: 0
+        child:
+          rid: 670843512307580931
+        isTrue: 1
+        returnSuccessOnFalse: 1
+    - rid: 670843512307580930
+      type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 037fc6972b36efe429215a603baf3915
+        position: {x: -348.31226, y: 786.0001}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        speed: 3
+        minDistance: 0
+        maxDistance: 2
+        respectToPlayer: 1
+        accelerate: 0
+    - rid: 670843512307580931
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 8c1ba68fb2863cb4e800cd875a6f0225
+        position: {x: -457.00015, y: 544}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 670843512307580935
+        - rid: 670843512307580932
+        - rid: 670843512307580930
+        - rid: 670843512307580936
+    - rid: 670843512307580932
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 94a368250c6f3fc46852fde3eb01764b
+        position: {x: -556.0796, y: 785.9999}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        animationName: angry walk
+        waitUntilFinished: 0
+    - rid: 670843512307580933
+      type: {class: IfPlayerTrapped, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 02bda3daee578b847931ea9f00da92da
+        position: {x: 250.99992, y: 426}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: NORMAL WALK
+        drawGizmos: 0
+        child:
+          rid: 670842958124154882
+        isTrue: 0
+        returnSuccessOnFalse: 1
+    - rid: 670843512307580935
+      type: {class: Wait, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 1c3c551a9eebc94409cc74f22ef43b77
+        position: {x: -706, y: 690.0001}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        duration: 1
+        random: 1
+        minDuration: 0.5
+        maxDuration: 2
+    - rid: 670843512307580936
+      type: {class: Wait, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: dacff119ad1b8de4a8912f2ae487db2c
+        position: {x: -233.00006, y: 690}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        duration: 1
+        random: 0
+        minDuration: 1
+        maxDuration: 3
+    - rid: 670843512307580937
+      type: {class: Wait, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 7886f93adfe0b2649a1bc23501813577
+        position: {x: 1077.7692, y: 817.99994}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        duration: 1
+        random: 1
+        minDuration: 2
+        maxDuration: 4
+    - rid: 670843512307580938
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 6dd1464fa3a465641aaa9c4ba73c7ba5
+        position: {x: 967, y: 690}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 670843512307580939
+        - rid: 670843512307580937
+    - rid: 670843512307580939
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 176ec1be62abadb48bc88cd73e4fa257
+        position: {x: 861.4373, y: 817.99994}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        animationName: idle
+        waitUntilFinished: 0

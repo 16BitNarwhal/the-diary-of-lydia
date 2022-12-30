@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace TheKiwiCoder {
 public class MoveToRandom : ActionNode {
@@ -43,8 +44,8 @@ public class MoveToRandom : ActionNode {
         } else {
             randomDirection += context.transform.position;
         }
-        UnityEngine.AI.NavMeshHit hit;
-        UnityEngine.AI.NavMesh.SamplePosition(randomDirection, out hit, maxDistance, 1);
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, maxDistance, 1);
         Vector3 finalPosition = hit.position;
         context.agent.SetDestination(finalPosition);
     }
