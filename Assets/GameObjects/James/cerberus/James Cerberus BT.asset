@@ -35,7 +35,7 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 311.2, y: 140, z: 0}
+  viewPosition: {x: 73, y: -64, z: 0}
   viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
@@ -121,8 +121,8 @@ MonoBehaviour:
           rid: 670843502506803212
         repeatCount: 1
         randomize: 1
-        repeatMin: 2
-        repeatMax: 4
+        repeatMin: 3
+        repeatMax: 8
         restartOnSuccess: 1
         restartOnFailure: 0
     - rid: 670843502506803210
@@ -192,7 +192,7 @@ MonoBehaviour:
         drawGizmos: 0
         entityPrefab: {fileID: 6327037945623338562, guid: 9862177acc426d247884cd7ba61c765b, type: 3}
         maxRandomDistance: 5
-        maxEntities: 5
+        maxEntities: 20
     - rid: 670843502506803215
       type: {class: Wait, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -204,7 +204,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        duration: 0.5
+        duration: 0.25
         random: 0
         minDuration: 1
         maxDuration: 3
@@ -223,8 +223,8 @@ MonoBehaviour:
           rid: 670843502506803218
         repeatCount: 1
         randomize: 1
-        repeatMin: 2
-        repeatMax: 3
+        repeatMin: 8
+        repeatMax: 15
         restartOnSuccess: 1
         restartOnFailure: 0
     - rid: 670843502506803218
@@ -252,7 +252,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        duration: 1
+        duration: 0.25
         random: 0
         minDuration: 1
         maxDuration: 3
@@ -284,7 +284,7 @@ MonoBehaviour:
         drawGizmos: 0
         entityPrefab: {fileID: 6011653329689261655, guid: 13c45d545c42d924380b75609caefed6, type: 3}
         maxRandomDistance: 10
-        maxEntities: 3
+        maxEntities: 30
     - rid: 670843502506803222
       type: {class: Log, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:

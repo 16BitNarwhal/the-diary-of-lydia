@@ -40,7 +40,7 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 452.8, y: -56.8, z: 0}
+  viewPosition: {x: 140, y: -243, z: 0}
   viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
@@ -117,7 +117,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        speed: 2
+        speed: 3
         minDistance: 0
         maxDistance: 2
         respectToPlayer: 0
@@ -179,10 +179,10 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        speed: 1
-        minDistance: 0
-        maxDistance: 10
-        respectToPlayer: 0
+        speed: 2
+        minDistance: 3
+        maxDistance: 7
+        respectToPlayer: 1
         accelerate: 0
     - rid: 670842958124154889
       type: {class: FiniteRepeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
@@ -348,8 +348,8 @@ MonoBehaviour:
         drawGizmos: 0
         duration: 1
         random: 1
-        minDuration: 2
-        maxDuration: 4
+        minDuration: 0
+        maxDuration: 3
     - rid: 670843512307580938
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:

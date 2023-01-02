@@ -6,6 +6,7 @@ public class Player : MonoBehaviour, IDamageable {
 
     public static Player instance;
     [SerializeField] private float health = 100;
+    [SerializeField] private MoreMountains.Tools.MMProgressBar healthBarUI;
 
     [SerializeField] private GameObject avatar;
     [SerializeField] private GameObject arrow;
@@ -26,13 +27,16 @@ public class Player : MonoBehaviour, IDamageable {
     private bool mouse_pressed;
     private float lastShot;
 
-    // Start is called before the first frame update
+    private Shader shaderGUItext;
+    private Shader shaderSpritesDefault;
     void Start() {
         instance = this;
         transform.position = new Vector2(0, 0);
         rb = GetComponent<Rigidbody2D>();
         animator = avatar.GetComponent<Animator>();
         sprite = avatar.GetComponent<SpriteRenderer>();
+        shaderGUItext = Shader.Find("GUI/Text Shader");
+        shaderSpritesDefault = Shader.Find("Sprites/Default");
     }
 
     void Update() {
@@ -84,19 +88,21 @@ public class Player : MonoBehaviour, IDamageable {
         if (Time.time - lastDamageTime < damageCooldown) return;
         lastDamageTime = Time.time;
         health -= damage;
-        StartCoroutine(FlashRed());
+        healthBarUI.UpdateBar(health, 0, 100);
+        StartCoroutine(DamageFlash());
         if (health <= 0) {
             Destroy(gameObject);
         }
     }
 
-    IEnumerator FlashRed() {
-        Color c = sprite.color;
-        for (int i=0;i<3;i++) {
-            sprite.color = Color.red;
-            yield return new WaitForSeconds(0.1f);
-            sprite.color = c;
-            yield return new WaitForSeconds(0.1f);
+    IEnumerator DamageFlash() {
+        for (int i=0;i<2;i++) {
+            sprite.material.shader = shaderGUItext;
+            sprite.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
+            sprite.material.shader = shaderSpritesDefault;
+            sprite.color = Color.white;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

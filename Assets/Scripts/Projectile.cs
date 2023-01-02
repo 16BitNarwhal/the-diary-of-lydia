@@ -12,11 +12,12 @@ public class Projectile : MonoBehaviour {
     [SerializeField] private bool destroyOnCollision = true;
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private float damage = 10f;
+    [SerializeField] private bool randomRotate = false;
     private new Collider2D collider;
     private ContactFilter2D contactFilter;
     private Vector2 velocity;
 
-    // Start is called before the first frame update
+    private int rotationDirection;
     void Start() {
         collider = GetComponentInChildren<Collider2D>();
 
@@ -27,6 +28,11 @@ public class Projectile : MonoBehaviour {
         contactFilter = new ContactFilter2D();
         contactFilter.useLayerMask = true;
         contactFilter.SetLayerMask(collisionMask);
+
+        if (randomRotate) {
+            avatar.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            rotationDirection = Random.Range(0, 2) * 2 - 1;
+        }
     }
 
     // Update is called once per frame
@@ -34,7 +40,11 @@ public class Projectile : MonoBehaviour {
         transform.position += (Vector3)velocity * Time.fixedDeltaTime;
 
         // rotate avatar according to global velocity offset by 90
-        avatar.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg + 90);
+        if (!randomRotate) {
+            avatar.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg + 90);
+        } else {
+            avatar.transform.Rotate(0, 0, 360 * rotationDirection * Time.fixedDeltaTime);
+        }
     }
 
     Collider2D[] collisions = new Collider2D[10];
@@ -73,9 +83,9 @@ public class Projectile : MonoBehaviour {
         velocity = vel;
     }
 
-    // destroy projectile after a certain amount of time
     void DestroyProjectile() {
-        Instantiate(deathParticle, transform.position, transform.rotation);
+        if (deathParticle != null)
+            Instantiate(deathParticle, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

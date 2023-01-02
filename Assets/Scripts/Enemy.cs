@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable {
     
+    private static float randomDamageModifier = 0.1f;
+
     [SerializeField] private float health = 100;
     private float baseSpeed = 3;
     private UnityEngine.AI.NavMeshAgent agent;
-    private new Collider collider;
+    private List<Collider2D> colliders;
+    [SerializeField] private float damage = 5f;
     private float damageCooldown = 0.1f;
     private List<SpriteRenderer> sprites;
+    private ContactFilter2D filter = new ContactFilter2D();
 
+    private Shader shaderGUItext;
+    private Shader shaderSpritesDefault;
     void Start() {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.angularSpeed = 0;
@@ -20,19 +26,32 @@ public class Enemy : MonoBehaviour, IDamageable {
         agent.speed = baseSpeed;
 
         sprites = new List<SpriteRenderer>(GetComponentsInChildren<SpriteRenderer>());
+        shaderGUItext = Shader.Find("GUI/Text Shader");
+        shaderSpritesDefault = Shader.Find("Sprites/Default");
         
         for (int i=sprites.Count-1;i>=0;i--) {
             if (sprites[i].sortingLayerName != "Entity") 
                 sprites.RemoveAt(i);
         }
 
-        collider = GetComponent<Collider>();
-        if (collider == null) 
-            collider = GetComponentInChildren<Collider>();
+        colliders = new List<Collider2D>(GetComponentsInChildren<Collider2D>());
+        if (GetComponent<Collider2D>() != null)
+            colliders.Add(GetComponent<Collider2D>());
+
+        filter.SetLayerMask(LayerMask.GetMask("Player"));
+
     }
 
+    private Collider2D[] collisions = new Collider2D[1];
     void Update() {
-        
+        foreach (Collider2D collider in colliders) {
+            collisions = new Collider2D[1];
+            collider.OverlapCollider(filter, collisions);
+
+            if (collisions[0] == null) continue;
+            float trueDamage = damage * (1 + Random.Range(-randomDamageModifier, randomDamageModifier));
+            Player.instance.TakeDamage(trueDamage);
+        }
     }
 
     // when collide with projectile, lose health (by projectile)
@@ -43,7 +62,7 @@ public class Enemy : MonoBehaviour, IDamageable {
         health -= damage;
 
         foreach (SpriteRenderer sprite in sprites) {
-            StartCoroutine(FlashRed(sprite));
+            StartCoroutine(DamageFlash(sprite));
         }
         
         if (health <= 0) {
@@ -51,11 +70,13 @@ public class Enemy : MonoBehaviour, IDamageable {
         }
     }
 
-    IEnumerator FlashRed(SpriteRenderer sprite) {
-        Color c = sprite.color;
-        sprite.color = Color.red;
+    IEnumerator DamageFlash(SpriteRenderer sprite) {
+        sprite.material.shader = shaderGUItext;
+        sprite.color = Color.white;
         yield return new WaitForSeconds(0.1f);
-        sprite.color = c;
+        sprite.material.shader = shaderSpritesDefault;
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
     }
 
 }

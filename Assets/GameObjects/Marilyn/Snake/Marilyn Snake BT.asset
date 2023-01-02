@@ -24,11 +24,12 @@ MonoBehaviour:
   - rid: 670843443928104960
   - rid: 670843443928104961
   - rid: 670843443928104962
+  - rid: 2997245656153194496
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 658.4, y: 160.8, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+  viewPosition: {x: 407, y: -11, z: 0}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 2
     RefIds:
@@ -76,14 +77,16 @@ MonoBehaviour:
         - rid: 670843443928104962
         - rid: 670843411552796672
         - rid: 670843411552796694
+        - rid: 2997245656153194496
         useWeights: 0
         weights: 0900000002000000
         useMarkov: 1
         markov:
-        - weights: 0b000000010000000100000001000000
-        - weights: 07000000000000000000000001000000
-        - weights: 06000000020000000000000001000000
-        - weights: 01000000000000000000000000000000
+        - weights: 0200000002000000020000000200000002000000
+        - weights: 0700000000000000000000000100000001000000
+        - weights: 0600000002000000000000000100000001000000
+        - weights: 0100000000000000000000000000000000000000
+        - weights: 0500000001000000010000000100000000000000
     - rid: 670842992814456848
       type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -106,36 +109,42 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 88de33b26ebceea4898391240a74bc82
-        position: {x: 163.29999, y: 380.8}
+        position: {x: 116.712494, y: 381.00003}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         projectilePrefabs:
-        - {fileID: 8314360807030634859, guid: 71e4cae98c178754f86a6c6fff646d4e, type: 3}
-        - {fileID: 0}
+        - {fileID: 726376072753736333, guid: 3c8115769f907ae49a9a785626842eb5, type: 3}
+        - {fileID: 6690642159211053088, guid: cf72d00f34564d049abecf197419a7b8, type: 3}
+        - {fileID: 3520341866358138541, guid: f35b29dc424430b4da57e249344611df, type: 3}
+        - {fileID: 3076028486752409342, guid: 2058bce02a0ee0f4a88373e2ee79cb0a, type: 3}
+        - {fileID: 4031758105228581946, guid: b40770780c7eb3b4ab44d5c4cdf198ca, type: 3}
         amount: 12
         repeat: 1
         shotDelay: 0.5
-        projectileSpeed: 2
+        projectileSpeed: 5
     - rid: 670843411552796694
       type: {class: SpreadShot, ns: , asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
         guid: d215e3461c18857469670e1c682399f2
-        position: {x: 417.54996, y: 381.00006}
+        position: {x: 310.55502, y: 381.00003}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         projectilePrefabs:
-        - {fileID: 8314360807030634859, guid: 71e4cae98c178754f86a6c6fff646d4e, type: 3}
-        - {fileID: 0}
-        amount: 4
-        repeat: 1
+        - {fileID: 726376072753736333, guid: 3c8115769f907ae49a9a785626842eb5, type: 3}
+        - {fileID: 6690642159211053088, guid: cf72d00f34564d049abecf197419a7b8, type: 3}
+        - {fileID: 3520341866358138541, guid: f35b29dc424430b4da57e249344611df, type: 3}
+        - {fileID: 3076028486752409342, guid: 2058bce02a0ee0f4a88373e2ee79cb0a, type: 3}
+        - {fileID: 4031758105228581946, guid: b40770780c7eb3b4ab44d5c4cdf198ca, type: 3}
+        amount: 16
+        repeat: 5
         shotDelay: 0.1
-        projectileSpeed: 3
+        projectileSpeed: 2
     - rid: 670843443928104960
       type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -158,12 +167,12 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: b636f83547323ac40944ab751108dc0e
-        position: {x: -286.20004, y: 519.2001}
+        position: {x: -287.32254, y: 519}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        speed: 6
+        speed: 10
         minDistance: 0
         maxDistance: 2
         respectToPlayer: 1
@@ -182,3 +191,24 @@ MonoBehaviour:
         children:
         - rid: 670843443928104961
         - rid: 670843443928104960
+    - rid: 2997245656153194496
+      type: {class: SpreadShot, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: c1df1abfb0cc4e8438136e34d5a2caf5
+        position: {x: 494.40997, y: 381.00006}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        projectilePrefabs:
+        - {fileID: 6690642159211053088, guid: cf72d00f34564d049abecf197419a7b8, type: 3}
+        - {fileID: 726376072753736333, guid: 3c8115769f907ae49a9a785626842eb5, type: 3}
+        - {fileID: 4031758105228581946, guid: b40770780c7eb3b4ab44d5c4cdf198ca, type: 3}
+        - {fileID: 3076028486752409342, guid: 2058bce02a0ee0f4a88373e2ee79cb0a, type: 3}
+        - {fileID: 3520341866358138541, guid: f35b29dc424430b4da57e249344611df, type: 3}
+        amount: 5
+        repeat: 3
+        shotDelay: 0.5
+        projectileSpeed: 8
