@@ -29,7 +29,11 @@ public class SummonEntity : ActionNode
         if (NavMesh.SamplePosition(position, out hit, 10, 1)) {
             position = hit.position;
         }
-        entities.Add(Object.Instantiate(entityPrefab, position, Quaternion.identity));
+
+        GameObject entity = Object.Instantiate(entityPrefab, position, Quaternion.identity);
+        if (entity.GetComponent<AutoSortOrder>()==null) 
+            entity.AddComponent<AutoSortOrder>();
+        entities.Add(entity);
     }
 
     protected override void OnStop() {

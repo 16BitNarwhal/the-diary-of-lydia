@@ -42,6 +42,7 @@ public class Player : MonoBehaviour, IDamageable {
     void Update() {
         HandleInput();
         HandleAttack();
+        healthBarUI.UpdateBar(health, 0, 100);
     }
 
     void FixedUpdate() {
@@ -60,6 +61,12 @@ public class Player : MonoBehaviour, IDamageable {
 
         // mouse pressed
         mouse_pressed = Input.GetMouseButton(0);
+
+        // shield
+        if (Input.GetKeyDown(KeyCode.Q)) Shield();
+
+        // heal
+        if (Input.GetKeyDown(KeyCode.E)) Heal();
     }
 
     void HandleMovement() {
@@ -85,10 +92,9 @@ public class Player : MonoBehaviour, IDamageable {
 
     private float lastDamageTime = 0;
     public void TakeDamage(float damage) {
-        if (Time.time - lastDamageTime < damageCooldown) return;
+        if (isShielded || Time.time - lastDamageTime < damageCooldown) return;
         lastDamageTime = Time.time;
         health -= damage;
-        healthBarUI.UpdateBar(health, 0, 100);
         StartCoroutine(DamageFlash());
         if (health <= 0) {
             Destroy(gameObject);
@@ -119,6 +125,59 @@ public class Player : MonoBehaviour, IDamageable {
 
     public bool IsTrapped() {
         return speed == 0;
+    }
+
+    //////////////////////////////
+    // Nath's Abilities : Shield, Heal, etc.
+    //////////////////////////////
+
+    [SerializeField] private GameObject shieldObject;
+    private bool isShielded = false;
+    private float shieldCooldown = 5f;
+    private float lastShieldTime = -1000f;
+    private float shieldDuration = 3f;
+    private float shieldFailChance = 0f;
+    public void Shield() {
+        Debug.Log("Q");
+        if (isShielded || Time.time - lastShieldTime < shieldCooldown) return;
+        Debug.Log("Shield!");
+        if (Random.value < shieldFailChance) {
+            isShielded = false;
+            lastShieldTime = Time.time;
+            return;
+        }
+
+        StartCoroutine(Shielded());
+    }
+
+    IEnumerator Shielded() {
+        isShielded = true;
+        GameObject shield = Instantiate(shieldObject, transform.position, Quaternion.identity);
+        shield.transform.parent = transform;
+        shield.transform.localPosition = new Vector3(0, 0.5f, 0);
+        yield return new WaitForSeconds(shieldDuration);
+        lastShieldTime = Time.time;
+        isShielded = false;
+        Destroy(shield);
+    }
+
+    [SerializeField] private GameObject healObject;
+    private float healCooldown = 5f;
+    private float lastHealTime = -1000f;
+    private float healAmount = 10f;
+    private float healFailChance = 0f;
+    public void Heal() {
+        Debug.Log("E");
+        if (Time.time - lastHealTime < healCooldown) return;
+        Debug.Log("Heal!");
+        lastHealTime = Time.time;
+
+        if (Random.value < healFailChance) return;
+        health = Mathf.Min(health + healAmount, 100);
+
+        GameObject heal = Instantiate(healObject, transform.position, Quaternion.identity);
+        heal.transform.parent = transform;
+        heal.transform.localPosition = new Vector3(0, 0.5f, 0);
     }
 
 }

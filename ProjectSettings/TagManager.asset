@@ -49,3 +49,6 @@ TagManager:
   - name: Entity
     uniqueID: 3788492293
     locked: 0
+  - name: Ability
+    uniqueID: 3666388257
+    locked: 0

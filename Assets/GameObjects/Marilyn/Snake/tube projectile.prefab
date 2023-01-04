@@ -253,6 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3076028486752409340}
   - component: {fileID: 3076028486752409341}
+  - component: {fileID: -5991832390137030960}
   m_Layer: 0
   m_Name: tube projectile
   m_TagString: Untagged
@@ -300,3 +301,15 @@ MonoBehaviour:
     m_Bits: 136
   damage: 10
   randomRotate: 1
+--- !u!114 &-5991832390137030960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076028486752409342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba14c79b168a2ed4eb9765a67854b8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

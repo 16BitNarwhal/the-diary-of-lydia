@@ -19,6 +19,10 @@ public class Projectile : MonoBehaviour {
 
     private int rotationDirection;
     void Start() {
+        if (GetComponent<AutoSortOrder>() == null) {
+            gameObject.AddComponent<AutoSortOrder>();
+        }
+
         collider = GetComponentInChildren<Collider2D>();
 
         avatar.transform.position = transform.position + (Vector3)offset;

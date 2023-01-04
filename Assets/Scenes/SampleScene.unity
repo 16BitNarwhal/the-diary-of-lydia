@@ -3201,7 +3201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3673338397797605739, guid: ee55814109f788c4d9f7da4d24b15ea4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12154565
+      value: -0.12153556
       objectReference: {fileID: 0}
     - target: {fileID: 3673338397797605739, guid: ee55814109f788c4d9f7da4d24b15ea4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3346,9 +3346,17 @@ PrefabInstance:
       value: lydia
       objectReference: {fileID: 0}
     - target: {fileID: 4996186509191035358, guid: 95055d80788e17349ae8ceba793d8add, type: 3}
+      propertyPath: healObject
+      value: 
+      objectReference: {fileID: 5417990537095993923, guid: 0861eb9bb8ceee94682945a69f1146a9, type: 3}
+    - target: {fileID: 4996186509191035358, guid: 95055d80788e17349ae8ceba793d8add, type: 3}
       propertyPath: healthBarUI
       value: 
       objectReference: {fileID: 1308704592}
+    - target: {fileID: 4996186509191035358, guid: 95055d80788e17349ae8ceba793d8add, type: 3}
+      propertyPath: shieldObject
+      value: 
+      objectReference: {fileID: 4680977679448844645, guid: b90dc4125605612488ddfc18ffa9c130, type: 3}
     - target: {fileID: 4996186509191035358, guid: 95055d80788e17349ae8ceba793d8add, type: 3}
       propertyPath: damageCooldown
       value: 0.5
