@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6690642158023700385}
   m_Layer: 6
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Sprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,9 +240,9 @@ GameObject:
   - component: {fileID: 6690642159211053090}
   - component: {fileID: 6690642159211053091}
   - component: {fileID: 6204650403833421509}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: diploma projectile
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

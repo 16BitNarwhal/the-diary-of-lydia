@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3520341866358138543}
   - component: {fileID: 3520341866358138542}
   - component: {fileID: 8026553692262446673}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: flask projectile
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 3520341867418880317}
   m_Layer: 6
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Sprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 6327037946464566810}
   m_Layer: 8
   m_Name: sprite
-  m_TagString: Untagged
+  m_TagString: Sprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 8619880497889922335}
   m_Layer: 8
   m_Name: person
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
+  damage: 5
 --- !u!95 &8619880497889922335
 Animator:
   serializedVersion: 4

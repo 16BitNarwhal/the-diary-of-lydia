@@ -14,6 +14,7 @@ namespace TheKiwiCoder {
         public Rigidbody rigidbody;
         public NavMeshAgent agent;
         public Enemy script; // all BTs should have an enemy script
+        public GameObject holding; // only applies by Hannah
 
         public static Context CreateFromGameObject(GameObject gameObject) {
             // Fetch all commonly used components

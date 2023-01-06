@@ -28,8 +28,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 407, y: -11, z: 0}
-  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
+  viewPosition: {x: 383, y: 77, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
     RefIds:
@@ -109,7 +109,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 88de33b26ebceea4898391240a74bc82
-        position: {x: 116.712494, y: 381.00003}
+        position: {x: 150.00006, y: 380.99997}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -130,7 +130,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: d215e3461c18857469670e1c682399f2
-        position: {x: 310.55502, y: 381.00003}
+        position: {x: 344, y: 380.99997}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -197,7 +197,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: c1df1abfb0cc4e8438136e34d5a2caf5
-        position: {x: 494.40997, y: 381.00006}
+        position: {x: 527, y: 380.99997}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 

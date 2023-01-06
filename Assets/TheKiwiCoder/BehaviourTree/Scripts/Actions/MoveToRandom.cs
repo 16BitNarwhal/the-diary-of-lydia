@@ -38,16 +38,24 @@ public class MoveToRandom : ActionNode {
             context.agent.autoBraking = false;
         }
         
-        Vector3 randomDirection = Random.insideUnitSphere * maxDistance;
+        Vector3 randomPos;
         if (respectToPlayer) {
-            randomDirection += Player.instance.transform.position;
+            randomPos = Player.instance.transform.position;
         } else {
-            randomDirection += context.transform.position;
+            randomPos = context.transform.position;
         }
+
+        float distance = Random.Range(minDistance, maxDistance);
+        randomPos += RandomUnitCircle() * distance;
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, maxDistance, 1);
+        NavMesh.SamplePosition(randomPos, out hit, maxDistance+1, 1);
         Vector3 finalPosition = hit.position;
         context.agent.SetDestination(finalPosition);
+    }
+
+    Vector3 RandomUnitCircle() {
+        float angle = Random.Range(0, 2 * Mathf.PI);
+        return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
     }
 
     protected override void OnStop() {

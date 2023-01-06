@@ -35,8 +35,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 73, y: -64, z: 0}
-  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  viewPosition: {x: 251.2, y: 173.6, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
@@ -172,7 +172,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: b241883bf1fe8504e9d470ccd27c9564
-        position: {x: 97.844955, y: 656.80005}
+        position: {x: 14.047691, y: 657.00006}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: howling anim

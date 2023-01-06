@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable {
 
@@ -40,9 +41,9 @@ public class Player : MonoBehaviour, IDamageable {
     }
 
     void Update() {
+        HandleUI();
         HandleInput();
         HandleAttack();
-        healthBarUI.UpdateBar(health, 0, 100);
     }
 
     void FixedUpdate() {
@@ -50,6 +51,17 @@ public class Player : MonoBehaviour, IDamageable {
         HandleAnimation();
     }
 
+    void HandleUI() {
+        healthBarUI.UpdateBar(health, 0, 100);
+        // update healUI opacity based on cooldown
+        Color c = shieldUI.color;
+        c.a = Mathf.Clamp01((Time.time - lastShieldTime) / shieldCooldown);
+        shieldUI.color = c;
+        c = healUI.color;
+        c.a = Mathf.Clamp01((Time.time - lastHealTime) / healCooldown);
+        healUI.color = c;
+    }
+    
     void HandleInput() {
         // movement input
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -131,6 +143,7 @@ public class Player : MonoBehaviour, IDamageable {
     // Nath's Abilities : Shield, Heal, etc.
     //////////////////////////////
 
+    [SerializeField] private Image shieldUI;
     [SerializeField] private GameObject shieldObject;
     private bool isShielded = false;
     private float shieldCooldown = 5f;
@@ -138,12 +151,11 @@ public class Player : MonoBehaviour, IDamageable {
     private float shieldDuration = 3f;
     private float shieldFailChance = 0f;
     public void Shield() {
-        Debug.Log("Q");
         if (isShielded || Time.time - lastShieldTime < shieldCooldown) return;
-        Debug.Log("Shield!");
+        lastShieldTime = Time.time;
+
         if (Random.value < shieldFailChance) {
             isShielded = false;
-            lastShieldTime = Time.time;
             return;
         }
 
@@ -156,20 +168,18 @@ public class Player : MonoBehaviour, IDamageable {
         shield.transform.parent = transform;
         shield.transform.localPosition = new Vector3(0, 0.5f, 0);
         yield return new WaitForSeconds(shieldDuration);
-        lastShieldTime = Time.time;
         isShielded = false;
         Destroy(shield);
     }
 
+    [SerializeField] private Image healUI;
     [SerializeField] private GameObject healObject;
     private float healCooldown = 5f;
     private float lastHealTime = -1000f;
     private float healAmount = 10f;
     private float healFailChance = 0f;
     public void Heal() {
-        Debug.Log("E");
         if (Time.time - lastHealTime < healCooldown) return;
-        Debug.Log("Heal!");
         lastHealTime = Time.time;
 
         if (Random.value < healFailChance) return;
