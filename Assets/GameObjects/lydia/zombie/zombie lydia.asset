@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: zombie lydia
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 2997245812072251404
+  nodes:
+  - rid: 2997245812072251404
+  - rid: 2997245812072251406
+  - rid: 2997245812072251407
+  - rid: 2997245812072251408
+  - rid: 2997245812072251409
+  treeState: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  viewPosition: {x: 395.2, y: 36, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 2997245812072251404
+      type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 336513da-b4eb-443b-8f22-e84c21f9254d
+        position: {x: 0, y: 0}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 2997245812072251407
+    - rid: 2997245812072251406
+      type: {class: AimedShot, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: ccca243d3e2465b4da2588875c62525e
+        position: {x: 207.20001, y: 440.6}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        projectilePrefabs:
+        - {fileID: 1718586783232793630, guid: 41245f6a9104f204a8d1a1ac1dc96d16, type: 3}
+        repeat: 5
+        shotDelay: 0.1
+        projectileSpeed: 3
+    - rid: 2997245812072251407
+      type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: b407450528af24447961092fd774da36
+        position: {x: 0, y: 124.19999}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 2997245812072251408
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 2997245812072251408
+      type: {class: RandomSelector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: c9a82f147b00ad746973cf90118be062
+        position: {x: 0, y: 249.19998}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 2997245812072251409
+        - rid: 2997245812072251406
+        useWeights: 0
+        weights: 
+        useMarkov: 0
+        markov: []
+    - rid: 2997245812072251409
+      type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 57856e8f897f1cb4b9f82c9e5ffaf9a4
+        position: {x: -160.60004, y: 428.19998}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        speed: 2
+        minDistance: 1
+        maxDistance: 5
+        respectToPlayer: 1
+        accelerate: 0

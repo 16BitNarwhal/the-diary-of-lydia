@@ -7,7 +7,6 @@ using TheKiwiCoder;
 public class DropHolded : ActionNode
 {
     protected override void OnStart() {
-        Debug.Log("DROP!");
         foreach (Transform child in context.transform) {
             Object.Destroy(child.gameObject);
         }

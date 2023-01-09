@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MoreMountains.Feedbacks;
 
 public class Player : MonoBehaviour, IDamageable {
 
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour, IDamageable {
     [SerializeField] private GameObject avatar;
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject gameOverUI;
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float projectileSpeed = 10f;
@@ -30,9 +32,11 @@ public class Player : MonoBehaviour, IDamageable {
 
     private Shader shaderGUItext;
     private Shader shaderSpritesDefault;
+    private bool isDead;
     void Start() {
+        isDead = false;
         instance = this;
-        transform.position = new Vector2(0, 0);
+        // transform.position = new Vector2(0, 0);
         rb = GetComponent<Rigidbody2D>();
         animator = avatar.GetComponent<Animator>();
         sprite = avatar.GetComponent<SpriteRenderer>();
@@ -41,27 +45,33 @@ public class Player : MonoBehaviour, IDamageable {
     }
 
     void Update() {
-        HandleUI();
+        if (isDead) return;
         HandleInput();
         HandleAttack();
     }
 
     void FixedUpdate() {
+        HandleUI();
         HandleMovement();
         HandleAnimation();
     }
 
     void HandleUI() {
-        healthBarUI.UpdateBar(health, 0, 100);
+        if (healthBarUI != null)
+            healthBarUI.UpdateBar(health, 0, 100);
         // update healUI opacity based on cooldown
-        Color c = shieldUI.color;
-        c.a = Mathf.Clamp01((Time.time - lastShieldTime) / shieldCooldown);
-        shieldUI.color = c;
-        c = healUI.color;
-        c.a = Mathf.Clamp01((Time.time - lastHealTime) / healCooldown);
-        healUI.color = c;
+        if (shieldUI != null) {
+            Color c = shieldUI.color;
+            c.a = Mathf.Clamp01((Time.time - lastShieldTime) / shieldCooldown);
+            shieldUI.color = c;
+        }
+        if (healUI != null) {
+            Color c = healUI.color;
+            c.a = Mathf.Clamp01((Time.time - lastHealTime) / healCooldown);
+            healUI.color = c;
+        }
     }
-    
+
     void HandleInput() {
         // movement input
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -104,12 +114,16 @@ public class Player : MonoBehaviour, IDamageable {
 
     private float lastDamageTime = 0;
     public void TakeDamage(float damage) {
+        if (isDead) return;
         if (isShielded || Time.time - lastDamageTime < damageCooldown) return;
         lastDamageTime = Time.time;
         health -= damage;
         StartCoroutine(DamageFlash());
         if (health <= 0) {
-            Destroy(gameObject);
+            isDead = true;
+            input = Vector2.zero;
+            gameOverUI.SetActive(true);
+            // death anim?
         }
     }
 
@@ -151,6 +165,7 @@ public class Player : MonoBehaviour, IDamageable {
     private float shieldDuration = 3f;
     private float shieldFailChance = 0f;
     public void Shield() {
+        if (shieldObject == null) return;
         if (isShielded || Time.time - lastShieldTime < shieldCooldown) return;
         lastShieldTime = Time.time;
 
@@ -179,6 +194,7 @@ public class Player : MonoBehaviour, IDamageable {
     private float healAmount = 10f;
     private float healFailChance = 0f;
     public void Heal() {
+        if (healObject == null) return;
         if (Time.time - lastHealTime < healCooldown) return;
         lastHealTime = Time.time;
 

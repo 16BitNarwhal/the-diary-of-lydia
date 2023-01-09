@@ -12,13 +12,12 @@ public class SpreadShot : ActionNode
     public int repeat = 1;
     public float shotDelay = 0.1f;
     public float projectileSpeed = 3f;
-    
-    private float lastShot;
+    public bool randomAngle = true;
+
     private int counter;
     private float angle;
 
     protected override void OnStart() {
-        lastShot = 0;
         counter = 0;
         angle = 360f/amount;
         
@@ -38,13 +37,14 @@ public class SpreadShot : ActionNode
 
     IEnumerator Shoot() {
         float angle = 360f / amount;
+        float angleOffset = randomAngle ? Random.Range(0, 360) : 0;
         for (int i = 0; i < amount; i++) {
             GameObject projectilePrefab = projectilePrefabs[Random.Range(0, projectilePrefabs.Count)];
             if (projectilePrefab == null) continue;
 
             GameObject projectile = Object.Instantiate(projectilePrefab, context.transform.position, context.transform.rotation);
             
-            Quaternion rotation = Quaternion.AngleAxis(angle * i, Vector3.forward);
+            Quaternion rotation = Quaternion.AngleAxis(angle * i + angleOffset, Vector3.forward);
             Vector3 direction = rotation * Vector3.right;
 
             Projectile p = projectile.GetComponent<Projectile>();
