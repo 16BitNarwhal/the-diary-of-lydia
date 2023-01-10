@@ -12,20 +12,24 @@ public class SpreadShot : ActionNode
     public int repeat = 1;
     public float shotDelay = 0.1f;
     public float projectileSpeed = 3f;
+    public float coneAngle = 360;
     public bool randomAngle = true;
 
     private int counter;
     private float angle;
 
+    Vector2 target;
     protected override void OnStart() {
         counter = 0;
-        angle = 360f/amount;
+        angle = coneAngle/amount;
         
         context.gameObject.GetComponent<Enemy>().StartCoroutine(Shoot());
 
         if (projectilePrefabs.Count == 0) {
             Debug.LogError("No projectile prefab set");
         }
+
+        target = Player.instance.transform.position - context.transform.position;
     }
 
     protected override void OnStop() {
@@ -36,8 +40,12 @@ public class SpreadShot : ActionNode
     }
 
     IEnumerator Shoot() {
-        float angle = 360f / amount;
-        float angleOffset = randomAngle ? Random.Range(0, 360) : 0;
+        float angle = coneAngle / amount;
+        float angleOffset = Random.Range(0, 360);
+        if (!randomAngle) {
+            angleOffset = Vector2.SignedAngle(Vector2.right, target);
+        }
+        angleOffset -= coneAngle / 2;
         for (int i = 0; i < amount; i++) {
             GameObject projectilePrefab = projectilePrefabs[Random.Range(0, projectilePrefabs.Count)];
             if (projectilePrefab == null) continue;

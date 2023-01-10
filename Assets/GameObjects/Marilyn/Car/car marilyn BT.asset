@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: car marilyn BT
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 2997245824619773952
+  nodes:
+  - rid: 2997245824619773952
+  - rid: 2997245825406992384
+  - rid: 2997245825406992385
+  - rid: 2997245825406992386
+  - rid: 2997245825406992390
+  - rid: 2997245831758217222
+  - rid: 2997245831758217223
+  - rid: 2997245831758217224
+  - rid: 2997245831758217225
+  treeState: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  viewPosition: {x: 333, y: 29, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 2997245824619773952
+      type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 0ef560e0-9ede-4727-8725-c4bc03a08d5f
+        position: {x: 0, y: 0}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 2997245825406992384
+    - rid: 2997245825406992384
+      type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 9b0135c01e324084ea85f5221a96f46e
+        position: {x: -0.0000076293945, y: 101.40468}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 2997245825406992385
+        restartOnSuccess: 1
+        restartOnFailure: 0
+    - rid: 2997245825406992385
+      type: {class: RandomSelector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 3d545b03a19d4f2438a268f44c0cf6b6
+        position: {x: 0.000015258789, y: 213.6}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 2997245831758217223
+        - rid: 2997245831758217224
+        useWeights: 0
+        weights: 
+        useMarkov: 0
+        markov: []
+    - rid: 2997245825406992386
+      type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: f59e529e8843d7b41812109cfec08192
+        position: {x: -149.99988, y: 484.99997}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        speed: 1
+        minDistance: 5
+        maxDistance: 8
+        respectToPlayer: 1
+        accelerate: 0
+    - rid: 2997245825406992390
+      type: {class: HorizontalAttack, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 390ef955ed73f854990001449574f19a
+        position: {x: 368.99997, y: 484.749}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        speed: 10
+    - rid: 2997245831758217222
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: a65d1bfb8df2a704d957f2366698fd99
+        position: {x: -372.99994, y: 484.99997}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        animationName: 
+        waitUntilFinished: 0
+    - rid: 2997245831758217223
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 2083d8040dcd91a42839aa2f6ec831b1
+        position: {x: -272.23508, y: 345.23907}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 2997245831758217222
+        - rid: 2997245825406992386
+    - rid: 2997245831758217224
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 940753885d5bd0140a43596bd2d13c66
+        position: {x: 267.76492, y: 345.23907}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 2997245831758217225
+        - rid: 2997245825406992390
+    - rid: 2997245831758217225
+      type: {class: PlayAnimation, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: f73b016255c0e33419d418b3fadcfb5c
+        position: {x: 185.00003, y: 484.749}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        animationName: 
+        waitUntilFinished: 0

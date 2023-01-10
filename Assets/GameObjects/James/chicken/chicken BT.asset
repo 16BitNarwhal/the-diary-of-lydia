@@ -10,99 +10,97 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
-  m_Name: zombie lydia
+  m_Name: chicken BT
   m_EditorClassIdentifier: 
   rootNode:
-    rid: 2997245812072251404
+    rid: 2997245825406992388
   nodes:
-  - rid: 2997245812072251404
-  - rid: 2997245812072251406
-  - rid: 2997245812072251407
-  - rid: 2997245812072251408
-  - rid: 2997245812072251409
+  - rid: 2997245825406992388
+  - rid: 2997245825406992389
+  - rid: 2997245825406992391
+  - rid: 2997245825406992392
+  - rid: 2997245825406992393
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 280.8, y: 32, z: 0}
-  viewScale: {x: 0.43232757, y: 0.43232757, z: 1}
+  viewPosition: {x: 308, y: 56, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
-    - rid: 2997245812072251404
+    - rid: 2997245825406992388
       type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
-        guid: 336513da-b4eb-443b-8f22-e84c21f9254d
+        guid: 5037c24b-aedb-4ea4-bd33-c8f916306af5
         position: {x: 0, y: 0}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         child:
-          rid: 2997245812072251407
-    - rid: 2997245812072251406
-      type: {class: AimedShot, ns: , asm: Assembly-CSharp}
+          rid: 2997245825406992391
+    - rid: 2997245825406992389
+      type: {class: BounceAttack, ns: , asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
-        guid: ccca243d3e2465b4da2588875c62525e
-        position: {x: 207.20001, y: 440.6}
+        guid: 60393c5d12f89e74f8d9abe2d43c8287
+        position: {x: 119.85237, y: 348.00003}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        projectilePrefabs:
-        - {fileID: 1718586783232793630, guid: 41245f6a9104f204a8d1a1ac1dc96d16, type: 3}
-        repeat: 5
-        shotDelay: 0.1
-        projectileSpeed: 3
-    - rid: 2997245812072251407
+        xSpeed: 5
+        ySpeed: 10
+        duration: 3
+    - rid: 2997245825406992391
       type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
-        guid: b407450528af24447961092fd774da36
-        position: {x: 0, y: 124.19999}
+        guid: f5ba2f0aed6a6f24689151151668ab19
+        position: {x: -0.000019073486, y: 84.8}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         child:
-          rid: 2997245812072251408
+          rid: 2997245825406992392
         restartOnSuccess: 1
         restartOnFailure: 0
-    - rid: 2997245812072251408
+    - rid: 2997245825406992392
       type: {class: RandomSelector, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
-        guid: c9a82f147b00ad746973cf90118be062
-        position: {x: 0, y: 249.19998}
+        guid: 8679c07e7f605d1408dd998067a42d47
+        position: {x: 0, y: 173.6}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         children:
-        - rid: 2997245812072251409
-        - rid: 2997245812072251406
+        - rid: 2997245825406992393
+        - rid: 2997245825406992389
         useWeights: 0
         weights: 
         useMarkov: 0
         markov: []
-    - rid: 2997245812072251409
+    - rid: 2997245825406992393
       type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
-        guid: 57856e8f897f1cb4b9f82c9e5ffaf9a4
-        position: {x: -160.60004, y: 428.19998}
+        guid: 8e6fc0c74f790d04a91d76f09b435dd6
+        position: {x: -115.474144, y: 348.05563}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        speed: 2
-        minDistance: 1
-        maxDistance: 5
+        speed: 1.5
+        minDistance: 5
+        maxDistance: 8
         respectToPlayer: 1
         accelerate: 0

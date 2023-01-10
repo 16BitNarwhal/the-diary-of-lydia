@@ -28,8 +28,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 374, y: 39, z: 0}
-  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  viewPosition: {x: 283.2, y: 35.2, z: 0}
+  viewScale: {x: 0.43232757, y: 0.43232757, z: 1}
   references:
     version: 2
     RefIds:
@@ -124,6 +124,7 @@ MonoBehaviour:
         repeat: 1
         shotDelay: 0.5
         projectileSpeed: 5
+        coneAngle: 360
         randomAngle: 1
     - rid: 670843411552796694
       type: {class: SpreadShot, ns: , asm: Assembly-CSharp}
@@ -143,10 +144,11 @@ MonoBehaviour:
         - {fileID: 3076028486752409342, guid: 2058bce02a0ee0f4a88373e2ee79cb0a, type: 3}
         - {fileID: 4031758105228581946, guid: b40770780c7eb3b4ab44d5c4cdf198ca, type: 3}
         amount: 2
-        repeat: 10
-        shotDelay: 0.1
-        projectileSpeed: 2
-        randomAngle: 1
+        repeat: 5
+        shotDelay: 0.3
+        projectileSpeed: 3.5
+        coneAngle: 90
+        randomAngle: 0
     - rid: 670843443928104960
       type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -214,4 +216,5 @@ MonoBehaviour:
         repeat: 3
         shotDelay: 0.5
         projectileSpeed: 8
-        randomAngle: 1
+        coneAngle: 180
+        randomAngle: 0

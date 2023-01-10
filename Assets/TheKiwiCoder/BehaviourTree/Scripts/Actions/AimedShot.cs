@@ -23,9 +23,7 @@ public class AimedShot : ActionNode
         return State.Success;
     }
 
-    IEnumerator Shoot() {
-        Debug.Log("zombie shoot");
-        
+    IEnumerator Shoot() {        
         Vector2 direction = Player.instance.transform.position - context.transform.position;
 
         for (int i = 0; i < repeat; i++) {
