@@ -7,18 +7,26 @@ using MoreMountains.Feedbacks;
 public class Player : MonoBehaviour, IDamageable {
 
     public static Player instance;
-    [SerializeField] private float health = 100;
+    [SerializeField] private float health = 50;
     [SerializeField] private MoreMountains.Tools.MMProgressBar healthBarUI;
 
     [SerializeField] private GameObject avatar;
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject cheatProjectile;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gameWinUI;
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float attackRate = 0.5f;
     [SerializeField] private float damageCooldown = 1f;
+
+    [SerializeField] private GameObject blankLydia;
+    [SerializeField] private AudioClip hurtSound, deathSound, shieldSound, healSound;
+    [SerializeField] private float volume;
+
+    public int bossesDefeated = 0;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -27,12 +35,16 @@ public class Player : MonoBehaviour, IDamageable {
     private Vector2 input;
     private Vector2 mousePos;
     private Vector2 direction;
-    private bool mouse_pressed;
+    private bool mousePressed;
+    private bool cheatActive;
     private float lastShot;
 
     private Shader shaderGUItext;
     private Shader shaderSpritesDefault;
     private bool isDead;
+    private bool isWin;
+    private AudioSource audioSource;
+
     void Start() {
         isDead = false;
         instance = this;
@@ -42,10 +54,17 @@ public class Player : MonoBehaviour, IDamageable {
         sprite = avatar.GetComponent<SpriteRenderer>();
         shaderGUItext = Shader.Find("GUI/Text Shader");
         shaderSpritesDefault = Shader.Find("Sprites/Default");
+        
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update() {
         if (isDead) return;
+        if (bossesDefeated == 5) {
+            gameWinUI.SetActive(true);
+            isWin = true;
+        }
         HandleInput();
         HandleAttack();
     }
@@ -58,7 +77,7 @@ public class Player : MonoBehaviour, IDamageable {
 
     void HandleUI() {
         if (healthBarUI != null)
-            healthBarUI.UpdateBar(health, 0, 100);
+            healthBarUI.UpdateBar(health, 0, 50);
         // update healUI opacity based on cooldown
         if (shieldUI != null) {
             Color c = shieldUI.color;
@@ -82,7 +101,10 @@ public class Player : MonoBehaviour, IDamageable {
         direction.Normalize();
 
         // mouse pressed
-        mouse_pressed = Input.GetMouseButton(0);
+        mousePressed = Input.GetMouseButton(0);
+
+        // cheat
+        cheatActive = Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Space);
 
         // shield
         if (Input.GetKeyDown(KeyCode.Q)) Shield();
@@ -95,47 +117,70 @@ public class Player : MonoBehaviour, IDamageable {
         rb.velocity = new Vector2(input.x, input.y) * speed;
     }
 
+    float lastCheat;
     void HandleAttack() {
-        if (mouse_pressed && (Time.time - lastShot > attackRate)) {
+        if (mousePressed && (Time.time - lastShot > attackRate)) {
             lastShot = Time.time;
             GameObject proj = Instantiate(projectile, transform.position, Quaternion.identity);
             proj.GetComponent<Projectile>().SetVelocity(direction * projectileSpeed);
+        }
+        if (cheatActive && (Time.time - lastCheat > 0.1f)) {
+            lastCheat = Time.time;
+            GameObject proj = Instantiate(cheatProjectile, transform.position, Quaternion.identity);
+            proj.GetComponent<Projectile>().SetVelocity(direction * projectileSpeed * 2.5f);
         }
     }
 
     void HandleAnimation() {
         // set animator values
         animator.SetBool("is_walking", input != Vector2.zero);
+        blankLydia.GetComponent<Animator>().SetBool("is_walking", input != Vector2.zero);
+
+        // update blank opacity based on bosses defeated
+        blankLydia.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, Mathf.Max(0, 1 - bossesDefeated * 0.3f));
 
         // set arrow rotation
         arrow.transform.localPosition = direction * 0.75f;
         arrow.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mousePos.y - avatar.transform.position.y, mousePos.x - avatar.transform.position.x) * Mathf.Rad2Deg - 90);
     }
 
-    private float lastDamageTime = 0;
+    private bool canDamage = true;
     public void TakeDamage(float damage) {
+        if (isWin) return;
         if (isDead) return;
-        if (isShielded || Time.time - lastDamageTime < damageCooldown) return;
-        lastDamageTime = Time.time;
+        if (!canDamage) return;
         health -= damage;
         StartCoroutine(DamageFlash());
         if (health <= 0) {
             isDead = true;
             input = Vector2.zero;
             gameOverUI.SetActive(true);
-            // death anim?
+            
+            audioSource.PlayOneShot(deathSound, volume);
+            // DEATH ANIM
+        } else {
+            audioSource.PlayOneShot(hurtSound, volume);
         }
     }
 
     IEnumerator DamageFlash() {
-        for (int i=0;i<2;i++) {
-            sprite.material.shader = shaderGUItext;
-            sprite.color = Color.white;
-            yield return new WaitForSeconds(0.05f);
-            sprite.material.shader = shaderSpritesDefault;
-            sprite.color = Color.white;
-            yield return new WaitForSeconds(0.05f);
+        canDamage = false;
+        for (int i=1;i<=7;i++) {
+            // change sprite opacity
+            sprite.color = new Color(1, 1, 1, 0);
+            blankLydia.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+            yield return new WaitForSeconds(.2f/(float)i);
+            sprite.color = new Color(1, 1, 1, 1);
+            blankLydia.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            yield return new WaitForSeconds(.2f/(float)i);
+            // sprite.material.shader = shaderGUItext;
+            // sprite.color = Color.white;
+            // yield return new WaitForSeconds(0.05f);
+            // sprite.material.shader = shaderSpritesDefault;
+            // sprite.color = Color.white;
+            // yield return new WaitForSeconds(0.05f);
         }
+        canDamage = true;
     }
 
     public void Trap(float seconds) {
@@ -160,10 +205,10 @@ public class Player : MonoBehaviour, IDamageable {
     [SerializeField] private Image shieldUI;
     [SerializeField] private GameObject shieldObject;
     private bool isShielded = false;
-    private float shieldCooldown = 5f;
+    private float shieldCooldown = 9f;
     private float lastShieldTime = -1000f;
-    private float shieldDuration = 3f;
-    private float shieldFailChance = 0f;
+    private float shieldDuration = 1.5f;
+    private float shieldFailChance = .5f;
     public void Shield() {
         if (shieldObject == null) return;
         if (isShielded || Time.time - lastShieldTime < shieldCooldown) return;
@@ -182,6 +227,9 @@ public class Player : MonoBehaviour, IDamageable {
         GameObject shield = Instantiate(shieldObject, transform.position, Quaternion.identity);
         shield.transform.parent = transform;
         shield.transform.localPosition = new Vector3(0, 0.5f, 0);
+
+        audioSource.PlayOneShot(shieldSound, volume);
+
         yield return new WaitForSeconds(shieldDuration);
         isShielded = false;
         Destroy(shield);
@@ -189,21 +237,24 @@ public class Player : MonoBehaviour, IDamageable {
 
     [SerializeField] private Image healUI;
     [SerializeField] private GameObject healObject;
-    private float healCooldown = 5f;
+    private float healCooldown = 10f;
     private float lastHealTime = -1000f;
-    private float healAmount = 10f;
-    private float healFailChance = 0f;
+    private float healAmount = 7.213f;
+    private float healFailChance = .6f;
     public void Heal() {
         if (healObject == null) return;
         if (Time.time - lastHealTime < healCooldown) return;
         lastHealTime = Time.time;
 
         if (Random.value < healFailChance) return;
-        health = Mathf.Min(health + healAmount, 100);
+        health = Mathf.Min(health + healAmount, 50f);
+
 
         GameObject heal = Instantiate(healObject, transform.position, Quaternion.identity);
         heal.transform.parent = transform;
         heal.transform.localPosition = new Vector3(0, 0.5f, 0);
+
+        audioSource.PlayOneShot(healSound, volume);
     }
 
 }

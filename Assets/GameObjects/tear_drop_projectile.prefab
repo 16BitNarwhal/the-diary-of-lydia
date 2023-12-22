@@ -161,7 +161,17 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 264
-  damage: 10
+  damage: 3.1415
+  randomRotate: 0
+  shootSounds:
+  - {fileID: 8300000, guid: 49bffbbe54e1c6349952b70ace715277, type: 3}
+  - {fileID: 8300000, guid: 67d475be864adf84689244aa56ac61e6, type: 3}
+  - {fileID: 8300000, guid: 91d67e2053edef445bd9837ca5921728, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 09634347b4a279e4ba7e0c924add9a5c, type: 3}
+  - {fileID: 8300000, guid: 4813627d692efea4288c795c3c28c989, type: 3}
+  - {fileID: 8300000, guid: d194a807e4adbf74aa9fb62b78ea02aa, type: 3}
+  volume: 0.5
 --- !u!1 &8314360807833467589
 GameObject:
   m_ObjectHideFlags: 0

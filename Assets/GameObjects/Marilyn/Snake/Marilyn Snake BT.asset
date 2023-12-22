@@ -25,11 +25,12 @@ MonoBehaviour:
   - rid: 670843443928104961
   - rid: 670843443928104962
   - rid: 2997245656153194496
+  - rid: 2997246104800067584
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 283.2, y: 35.2, z: 0}
-  viewScale: {x: 0.43232757, y: 0.43232757, z: 1}
+  viewPosition: {x: 355, y: -34, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
@@ -82,10 +83,10 @@ MonoBehaviour:
         weights: 0900000002000000
         useMarkov: 1
         markov:
-        - weights: 0200000002000000020000000200000002000000
-        - weights: 0700000000000000000000000100000001000000
+        - weights: 0200000004000000020000000200000002000000
+        - weights: 0700000002000000000000000100000001000000
         - weights: 0600000002000000000000000100000001000000
-        - weights: 0100000000000000000000000000000000000000
+        - weights: 0100000001000000000000000000000000000000
         - weights: 0500000001000000010000000100000000000000
     - rid: 670842992814456848
       type: {class: MoveToRandom, ns: TheKiwiCoder, asm: Assembly-CSharp}
@@ -155,7 +156,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: d56db1e0b48a2f94a91f950b5d77ffb2
-        position: {x: -97.850044, y: 519.2001}
+        position: {x: -35.03573, y: 569.7911}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -171,12 +172,12 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: b636f83547323ac40944ab751108dc0e
-        position: {x: -287.32254, y: 519}
+        position: {x: -224.03578, y: 569.7911}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
-        speed: 10
+        speed: 15
         minDistance: 0
         maxDistance: 2
         respectToPlayer: 1
@@ -193,6 +194,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         children:
+        - rid: 2997246104800067584
         - rid: 670843443928104961
         - rid: 670843443928104960
     - rid: 2997245656153194496
@@ -218,3 +220,17 @@ MonoBehaviour:
         projectileSpeed: 8
         coneAngle: 180
         randomAngle: 0
+    - rid: 2997246104800067584
+      type: {class: PlaySound, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 3b304ab4069656945aa2c5e1d81a644b
+        position: {x: -388.33844, y: 570}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        sounds:
+        - {fileID: 8300000, guid: 9d2647ce38f94a94bab368eb33ce7779, type: 3}
+        volume: 0.5

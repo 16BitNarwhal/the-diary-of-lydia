@@ -38,8 +38,16 @@ public class Snake : MonoBehaviour {
         }
     }
 
-
+    private float nextSpawnTime;
     void FixedUpdate() {
+        nextSpawnTime -= Time.fixedDeltaTime;
+        if (nextSpawnTime <= 0) {
+            nextSpawnTime = Random.Range(4f, 9f);
+            AddBodySegment();
+            Enemy e = transform.parent.GetComponent<Enemy>();
+            e.RefindSprites();
+        }
+
         // get rotation of first body segment towards head
         if (bodySegments.Count > 0) {
             Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * (transform.position - bodySegments[0].transform.position);

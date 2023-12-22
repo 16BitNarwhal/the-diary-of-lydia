@@ -54,7 +54,16 @@ public class Enemy : MonoBehaviour, IDamageable {
         }
     }
 
-    // when collide with projectile, lose health (by projectile)
+    public void RefindSprites() {
+        sprites = new List<SpriteRenderer>(GetComponentsInChildren<SpriteRenderer>());
+        
+        for (int i=sprites.Count-1;i>=0;i--) {
+            if (sprites[i].sortingLayerName != "Entity") 
+                sprites.RemoveAt(i);
+        }
+    }
+
+    public GameObject spawnOnDeath;
     private float lastDamageTime = 0;
     public void TakeDamage(float damage) {
         if (Time.time - lastDamageTime < damageCooldown) return;
@@ -66,6 +75,11 @@ public class Enemy : MonoBehaviour, IDamageable {
         }
         
         if (health <= 0) {
+            if (spawnOnDeath != null) 
+                Instantiate(spawnOnDeath, transform.position, Quaternion.identity);
+            
+            if (tag == "Boss")
+                Player.instance.bossesDefeated++;
             Destroy(gameObject);
         }
     }

@@ -20,11 +20,13 @@ MonoBehaviour:
   - rid: 2997245812072251407
   - rid: 2997245812072251408
   - rid: 2997245812072251409
+  - rid: 2997246104800067596
+  - rid: 2997246104800067597
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 280.8, y: 32, z: 0}
-  viewScale: {x: 0.43232757, y: 0.43232757, z: 1}
+  viewPosition: {x: 303, y: -49, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
     RefIds:
@@ -47,7 +49,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: ccca243d3e2465b4da2588875c62525e
-        position: {x: 207.20001, y: 440.6}
+        position: {x: 354.7754, y: 547}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -85,7 +87,7 @@ MonoBehaviour:
         drawGizmos: 0
         children:
         - rid: 2997245812072251409
-        - rid: 2997245812072251406
+        - rid: 2997246104800067596
         useWeights: 0
         weights: 
         useMarkov: 0
@@ -96,7 +98,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 57856e8f897f1cb4b9f82c9e5ffaf9a4
-        position: {x: -160.60004, y: 428.19998}
+        position: {x: -198.66794, y: 409.00003}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -106,3 +108,32 @@ MonoBehaviour:
         maxDistance: 5
         respectToPlayer: 1
         accelerate: 0
+    - rid: 2997246104800067596
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 87f57f25ed7319546bae822967c5e9fe
+        position: {x: 189.00003, y: 409}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 2997246104800067597
+        - rid: 2997245812072251406
+    - rid: 2997246104800067597
+      type: {class: PlaySound, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 112ecb508de60a9428b7b27ebd75bb5e
+        position: {x: 75.00003, y: 547}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        sounds:
+        - {fileID: 8300000, guid: 105d4d8a55e9bf147a1af1d6837cedcf, type: 3}
+        - {fileID: 8300000, guid: cab7266d05121d548a192d137032c8bd, type: 3}
+        volume: 0.5

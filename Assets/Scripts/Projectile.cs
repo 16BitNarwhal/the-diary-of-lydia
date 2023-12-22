@@ -13,9 +13,14 @@ public class Projectile : MonoBehaviour {
     [SerializeField] private LayerMask collisionMask;
     [SerializeField] private float damage = 10f;
     [SerializeField] private bool randomRotate = false;
+    [SerializeField] private List<AudioClip> shootSounds;
+    [SerializeField] private List<AudioClip> hitSounds;
+    [SerializeField] private float volume = .5f;
+    
     private new Collider2D collider;
     private ContactFilter2D contactFilter;
     private Vector2 velocity;
+    private AudioSource audioSource;
 
     private int rotationDirection;
     void Start() {
@@ -37,6 +42,14 @@ public class Projectile : MonoBehaviour {
             avatar.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
             rotationDirection = Random.Range(0, 2) * 2 - 1;
         }
+
+        audioSource = Player.instance.GetComponent<AudioSource>();
+
+        if (shootSounds.Count > 0) {
+            AudioClip sound = shootSounds[Random.Range(0, shootSounds.Count)];
+            audioSource.PlayOneShot(sound, volume);
+        }
+        
     }
 
     // Update is called once per frame
@@ -90,6 +103,12 @@ public class Projectile : MonoBehaviour {
     void DestroyProjectile() {
         if (deathParticle != null)
             Instantiate(deathParticle, transform.position, transform.rotation);
+
+        if (hitSounds.Count > 0) {
+            AudioClip sound = hitSounds[Random.Range(0, hitSounds.Count)];
+            audioSource.PlayOneShot(sound, volume);
+        }
+
         Destroy(gameObject);
     }
 

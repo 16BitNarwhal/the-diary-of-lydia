@@ -13,6 +13,7 @@ namespace TheKiwiCoder {
         public Animator animator;
         public Rigidbody rigidbody;
         public NavMeshAgent agent;
+        public AudioSource audioSource;
         public Enemy script; // all BTs should have an enemy script
         public GameObject holding; // only applies by Hannah
 
@@ -25,6 +26,12 @@ namespace TheKiwiCoder {
             context.agent = gameObject.GetComponent<NavMeshAgent>();
             context.script = gameObject.GetComponent<Enemy>();
             context.animator = gameObject.GetComponent<Animator>();
+            context.audioSource = gameObject.GetComponent<AudioSource>();
+
+            // if no audiosource, create it
+            if (context.audioSource == null) {
+                context.audioSource = gameObject.AddComponent<AudioSource>();
+            }
 
             // if no context.animator, try find on child
             if (context.animator == null) {
